@@ -14,9 +14,9 @@ async function main() {
   await prisma.record.deleteMany();
   await prisma.user.deleteMany();
 
-  const adminPassword = await argon2.hash('admin123');
-  const analystPassword = await argon2.hash('analyst123');
-  const viewerPassword = await argon2.hash('viewer123');
+  const adminPassword = await argon2.hash('Admin@123456');
+  const analystPassword = await argon2.hash('Analyst@123');
+  const viewerPassword = await argon2.hash('Viewer@123');
 
   const admin = await prisma.user.create({
     data: {
