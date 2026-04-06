@@ -39,3 +39,135 @@ prisma:query UPDATE `main`.`users` SET `refreshToken` = ?, `updatedAt` = ? WHERE
       "statusCode": 200
     }
     responseTime: 40.728833973407745
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`status`, `main`.`users`.`createdAt`, `main`.`users`.`updatedAt`, `main`.`users`.`refreshToken` FROM `main`.`users` WHERE (`main`.`users`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`status`, `main`.`users`.`createdAt`, `main`.`users`.`updatedAt`, `main`.`users`.`refreshToken` FROM `main`.`users` WHERE (`main`.`users`.`id` = ? AND 1=1) LIMIT ? OFFSET ?
+[12:57:27 UTC] INFO: incoming request
+    reqId: "req-3"
+    req: {
+      "method": "GET",
+      "url": "/api/auth/me",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49346
+    }
+[12:57:27 UTC] INFO: request completed
+    reqId: "req-3"
+    res: {
+      "statusCode": 401
+    }
+    responseTime: 3.6525830030441284
+[12:57:27 UTC] INFO: incoming request
+    reqId: "req-4"
+    req: {
+      "method": "GET",
+      "url": "/api/auth/me",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49348
+    }
+[12:57:27 UTC] INFO: request completed
+    reqId: "req-4"
+    res: {
+      "statusCode": 401
+    }
+    responseTime: 0.43195801973342896
+[12:57:27 UTC] INFO: incoming request
+    reqId: "req-5"
+    req: {
+      "method": "POST",
+      "url": "/api/auth/refresh",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49350
+    }
+[12:57:27 UTC] INFO: incoming request
+    reqId: "req-6"
+    req: {
+      "method": "POST",
+      "url": "/api/auth/refresh",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49352
+    }
+[12:57:27 UTC] INFO: request completed
+    reqId: "req-5"
+    res: {
+      "statusCode": 401
+    }
+    responseTime: 3.854249954223633
+[12:57:27 UTC] INFO: request completed
+    reqId: "req-6"
+    res: {
+      "statusCode": 401
+    }
+    responseTime: 1.6949999928474426
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`status`, `main`.`users`.`createdAt`, `main`.`users`.`updatedAt`, `main`.`users`.`refreshToken` FROM `main`.`users` WHERE (`main`.`users`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
+[12:58:41 UTC] INFO: incoming request
+    reqId: "req-7"
+    req: {
+      "method": "POST",
+      "url": "/api/auth/login",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49377
+    }
+[12:58:41 UTC] INFO: request completed
+    reqId: "req-7"
+    res: {
+      "statusCode": 401
+    }
+    responseTime: 53.22054100036621
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`status`, `main`.`users`.`createdAt`, `main`.`users`.`updatedAt`, `main`.`users`.`refreshToken` FROM `main`.`users` WHERE (`main`.`users`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
+[12:59:00 UTC] INFO: incoming request
+    reqId: "req-8"
+    req: {
+      "method": "POST",
+      "url": "/api/auth/login",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49389
+    }
+[12:59:00 UTC] INFO: request completed
+    reqId: "req-8"
+    res: {
+      "statusCode": 401
+    }
+    responseTime: 49.231541991233826
+[13:01:13 UTC] INFO: incoming request
+    reqId: "req-9"
+    req: {
+      "method": "GET",
+      "url": "/api/health",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49468
+    }
+[13:01:13 UTC] INFO: request completed
+    reqId: "req-9"
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 1.3160420060157776
+prisma:query SELECT 1
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`email`, `main`.`users`.`password`, `main`.`users`.`name`, `main`.`users`.`role`, `main`.`users`.`status`, `main`.`users`.`createdAt`, `main`.`users`.`updatedAt`, `main`.`users`.`refreshToken` FROM `main`.`users` WHERE (`main`.`users`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
+prisma:query UPDATE `main`.`users` SET `refreshToken` = ?, `updatedAt` = ? WHERE (`main`.`users`.`id` = ? AND 1=1) RETURNING `id` AS `id`, `email` AS `email`, `password` AS `password`, `name` AS `name`, `role` AS `role`, `status` AS `status`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`, `refreshToken` AS `refreshToken`
+[13:01:25 UTC] INFO: incoming request
+    reqId: "req-a"
+    req: {
+      "method": "POST",
+      "url": "/api/auth/login",
+      "hostname": "localhost:3001",
+      "remoteAddress": "127.0.0.1",
+      "remotePort": 49472
+    }
+[13:01:25 UTC] INFO: request completed
+    reqId: "req-a"
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 38.80758398771286
+
+Shutting down gracefully...

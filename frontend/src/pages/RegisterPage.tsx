@@ -28,6 +28,26 @@ export function RegisterPage() {
       return;
     }
 
+    if (!/[A-Z]/.test(password)) {
+      setLocalError('Password must contain at least one uppercase letter');
+      return;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      setLocalError('Password must contain at least one lowercase letter');
+      return;
+    }
+
+    if (!/[0-9]/.test(password)) {
+      setLocalError('Password must contain at least one number');
+      return;
+    }
+
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      setLocalError('Password must contain at least one special character');
+      return;
+    }
+
     try {
       await register(email, password, name);
       navigate('/dashboard');

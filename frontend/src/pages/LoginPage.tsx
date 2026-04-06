@@ -110,17 +110,17 @@ export function LoginPage() {
               <div className="bg-gray-50 rounded-lg p-2 text-center">
                 <p className="font-medium text-gray-700">Admin</p>
                 <p className="text-gray-500">admin@finance.com</p>
-                <p className="text-gray-500">admin123</p>
+                <p className="text-gray-500">Admin@123456</p>
               </div>
               <div className="bg-gray-50 rounded-lg p-2 text-center">
                 <p className="font-medium text-gray-700">Analyst</p>
                 <p className="text-gray-500">analyst@finance.com</p>
-                <p className="text-gray-500">analyst123</p>
+                <p className="text-gray-500">Analyst@123</p>
               </div>
               <div className="bg-gray-50 rounded-lg p-2 text-center">
                 <p className="font-medium text-gray-700">Viewer</p>
                 <p className="text-gray-500">viewer@finance.com</p>
-                <p className="text-gray-500">viewer123</p>
+                <p className="text-gray-500">Viewer@123</p>
               </div>
             </div>
           </div>
