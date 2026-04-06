@@ -1,0 +1,131 @@
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { TrendingUp, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { Button, Input } from '../components/ui';
+import { useAuthStore } from '../store/auth.store';
+
+export function LoginPage() {
+  const navigate = useNavigate();
+  const { login, isLoading, error, clearError } = useAuthStore();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate('/dashboard');
+    } catch {
+      // Error is handled in store
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100 flex items-center justify-center p-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-md"
+      >
+        <div className="bg-white rounded-3xl shadow-xl p-8">
+          <div className="text-center mb-8">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: 'spring' }}
+              className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center mx-auto mb-4"
+            >
+              <TrendingUp className="w-8 h-8 text-white" />
+            </motion.div>
+            <h1 className="text-2xl font-bold text-gray-900">Welcome back</h1>
+            <p className="text-gray-500 mt-2">Sign in to your account</p>
+          </div>
+
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700"
+            >
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <p className="text-sm">{error}</p>
+            </motion.div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (error) clearError();
+                }}
+                className="pl-11"
+                required
+              />
+            </div>
+
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (error) clearError();
+                }}
+                className="pl-11"
+                required
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full"
+              isLoading={isLoading}
+              rightIcon={<ArrowRight className="w-4 h-4" />}
+            >
+              Sign in
+            </Button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-gray-500">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-primary-600 hover:text-primary-700 font-medium">
+                Sign up
+              </Link>
+            </p>
+          </div>
+
+          <div className="mt-8 pt-6 border-t border-gray-100">
+            <p className="text-xs text-gray-400 text-center mb-4">Demo Credentials</p>
+            <div className="grid grid-cols-3 gap-2 text-xs">
+              <div className="bg-gray-50 rounded-lg p-2 text-center">
+                <p className="font-medium text-gray-700">Admin</p>
+                <p className="text-gray-500">admin@finance.com</p>
+                <p className="text-gray-500">admin123</p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-2 text-center">
+                <p className="font-medium text-gray-700">Analyst</p>
+                <p className="text-gray-500">analyst@finance.com</p>
+                <p className="text-gray-500">analyst123</p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-2 text-center">
+                <p className="font-medium text-gray-700">Viewer</p>
+                <p className="text-gray-500">viewer@finance.com</p>
+                <p className="text-gray-500">viewer123</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
