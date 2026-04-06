@@ -5,16 +5,18 @@ services:
     image: postgres:15-alpine
     container_name: finance-db
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      POSTGRES_USER: finance
-      POSTGRES_PASSWORD: finance_secret
-      POSTGRES_DB: finance_dashboard
+      POSTGRES_USER: ${POSTGRES_USER:-finance}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change_me_in_production}
+      POSTGRES_DB: ${POSTGRES_DB:-finance_dashboard}
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U finance -d finance_dashboard"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-finance} -d ${POSTGRES_DB:-finance_dashboard}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,10 +27,12 @@ services:
       dockerfile: Dockerfile
     container_name: finance-backend
     restart: unless-stopped
+    env_file:
+      - .env
     environment:
-      DATABASE_URL: postgresql://finance:finance_secret@db:5432/finance_dashboard
-      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key}
-      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-your-super-secret-refresh-key}
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
       NODE_ENV: production
       PORT: 3001
     ports:
