@@ -24,15 +24,35 @@ const fastify = Fastify({
 
 async function start() {
   try {
+    const allowedOrigins = process.env.ALLOWED_ORIGINS 
+      ? process.env.ALLOWED_ORIGINS.split(',')
+      : process.env.NODE_ENV === 'production'
+        ? ['https://your-production-domain.com']
+        : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'];
+
     await fastify.register(cors, {
-      origin: process.env.NODE_ENV === 'production' 
-        ? ['https://finance-dashboard.example.com']
-        : ['http://localhost:5173', 'http://localhost:3000'],
+      origin: allowedOrigins,
       credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      maxAge: 86400,
     });
 
     await fastify.register(helmet, {
-      contentSecurityPolicy: false,
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", 'data:', 'https:'],
+          connectSrc: ["'self'"],
+          fontSrc: ["'self'"],
+          objectSrc: ["'none'"],
+          mediaSrc: ["'self'"],
+          frameSrc: ["'none'"],
+        },
+      },
+      crossOriginEmbedderPolicy: false,
     });
 
     await fastify.register(rateLimit, {
@@ -46,7 +66,10 @@ async function start() {
     });
 
     await fastify.register(jwt, {
-      secret: process.env.JWT_SECRET || 'secret',
+      secret: process.env.JWT_SECRET,
+      sign: {
+        expiresIn: '15m',
+      },
     });
 
     fastify.get('/api/health', async () => {

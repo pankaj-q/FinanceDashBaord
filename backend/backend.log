@@ -1120,3 +1120,51 @@ Shutting down gracefully...
       "address": "0.0.0.0",
       "port": 3001
     }
+6:21:25 PM [tsx] change in ./src/utils/validation.ts Rerunning...
+c[12:51:27 UTC] ERROR: listen EADDRINUSE: address already in use 0.0.0.0:3001
+    err: {
+      "type": "Error",
+      "message": "listen EADDRINUSE: address already in use 0.0.0.0:3001",
+      "stack":
+          Error: listen EADDRINUSE: address already in use 0.0.0.0:3001
+              at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+              at listenInCluster (node:net:1997:12)
+              at node:net:2206:7
+              at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+      "code": "EADDRINUSE",
+      "errno": -48,
+      "syscall": "listen",
+      "address": "0.0.0.0",
+      "port": 3001
+    }
+6:21:31 PM [tsx] change in ./src/utils/validation.ts Rerunning...
+c
+🚀 Finance Dashboard API running at http://0.0.0.0:3001
+📚 API Documentation: http://localhost:3001/api/health
+
+[12:51:31 UTC] INFO: Server listening at http://0.0.0.0:3001
+6:21:43 PM [tsx] change in ./src/utils/validation.ts Restarting...
+
+Shutting down gracefully...
+c[12:51:44 UTC] ERROR: listen EADDRINUSE: address already in use 0.0.0.0:3001
+    err: {
+      "type": "Error",
+      "message": "listen EADDRINUSE: address already in use 0.0.0.0:3001",
+      "stack":
+          Error: listen EADDRINUSE: address already in use 0.0.0.0:3001
+              at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+              at listenInCluster (node:net:1997:12)
+              at node:net:2206:7
+              at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+      "code": "EADDRINUSE",
+      "errno": -48,
+      "syscall": "listen",
+      "address": "0.0.0.0",
+      "port": 3001
+    }
+6:21:49 PM [tsx] change in ./src/index.ts Rerunning...
+c
+🚀 Finance Dashboard API running at http://0.0.0.0:3001
+📚 API Documentation: http://localhost:3001/api/health
+
+[12:51:49 UTC] INFO: Server listening at http://0.0.0.0:3001
