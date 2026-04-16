@@ -27,7 +27,7 @@ async function start() {
     const allowedOrigins = process.env.ALLOWED_ORIGINS 
       ? process.env.ALLOWED_ORIGINS.split(',')
       : process.env.NODE_ENV === 'production'
-        ? ['https://your-production-domain.com']
+        ? ['https://xyz-ivory-one.vercel.app']
         : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'];
 
     await fastify.register(cors, {
