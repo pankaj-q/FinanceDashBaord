@@ -1,5 +1,5 @@
 import { prisma } from '../utils/prisma.js';
-import argon2 from 'argon2';
+import bcrypt from 'bcrypt';
 import { SignJWT, jwtVerify, JWTPayload } from 'jose';
 import type { AuthenticatedUser, Role, Status } from '../types/index.js';
 
@@ -18,7 +18,7 @@ export class AuthService {
       throw new Error('Email already registered');
     }
 
-    const hashedPassword = await argon2.hash(password);
+    const hashedPassword = await bcrypt.hash(password, 10);
     
     const user = await prisma.user.create({
       data: {
@@ -49,7 +49,7 @@ export class AuthService {
       throw new Error('Invalid credentials');
     }
 
-    const isValidPassword = await argon2.verify(user.password, password);
+    const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       throw new Error('Invalid credentials');
     }

@@ -1,5 +1,5 @@
 import { prisma } from '../utils/prisma.js';
-import argon2 from 'argon2';
+import bcrypt from 'bcrypt';
 import type { PaginatedResponse, Role, Status } from '../types/index.js';
 
 interface UserListParams {
@@ -88,7 +88,7 @@ export class UserService {
       throw new Error('Email already registered');
     }
 
-    const hashedPassword = await argon2.hash(data.password);
+    const hashedPassword = await bcrypt.hash(data.password, 10);
 
     const user = await prisma.user.create({
       data: {
