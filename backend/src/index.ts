@@ -65,7 +65,7 @@ async function start() {
       }),
     });
 
-    await fastify.register(jwt, {
+    await fastify.register(jwt as any, {
       secret: process.env.JWT_SECRET,
       sign: {
         expiresIn: '15m',
