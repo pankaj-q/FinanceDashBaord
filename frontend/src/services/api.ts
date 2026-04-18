@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import type { ErrorResponse } from '../types';
 
 const api = axios.create({
-  baseURL: "http://financedashbaord.onrender.com/api",
+  baseURL: "https://financedashbaord.onrender.com/api",
   headers: {
     'Content-Type': 'application/json',
   },
